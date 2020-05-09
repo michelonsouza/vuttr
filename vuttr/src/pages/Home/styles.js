@@ -6,8 +6,14 @@ import metrics from '~/styles/metrics';
 export const Container = styled.div`
   display: flex;
   justify-content: center;
-  align-items: center;
   height: 100%;
+  padding-top: 20px;
+
+  .home__button-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
 
   .form-title {
     display: flex;
@@ -45,7 +51,7 @@ export const Content = styled.div`
   max-width: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  /* justify-content: center; */
 
   @media screen and (max-width: 900px) {
     padding: 0 ${metrics.padding / 3}px;
@@ -62,9 +68,37 @@ export const Content = styled.div`
 
 export const NavbarContainer = styled.div`
   display: flex;
-  justify-content: space-between;
   align-items: center;
   width: 100%;
+
+  @media screen and (min-width: 768px) {
+  }
+
+  & > div {
+    display: flex;
+    flex: 1;
+
+    & > div {
+      flex: 1;
+    }
+
+    @media screen and (min-width: 768px) {
+      margin-right: 20px;
+    }
+  }
+
+  form {
+    flex: 1;
+    max-width: 50%;
+
+    @media screen and (min-width: 765px) {
+      max-width: 100%;
+    }
+
+    & > div {
+      flex: 1;
+    }
+  }
 
   @media screen and (max-width: 565px) {
     flex-direction: column;
@@ -75,7 +109,7 @@ export const NavbarContainer = styled.div`
       margin-top: ${metrics.margin}px;
 
       @media screen and (min-width: 768px) {
-        margin-left: auto;
+        margin-left: 20px;
       }
     }
   }
@@ -87,9 +121,6 @@ export const LeftContainer = styled.div`
 
   @media screen and (max-width: 565px) {
     align-items: center;
-    form {
-      max-width: 50%;
-    }
 
     span {
       font-size: 16px;

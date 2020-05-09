@@ -6,19 +6,28 @@ import React, {
   useMemo,
   memo,
   useRef,
-  useCallback
+  useCallback,
 } from 'react';
 import { ThemeContext } from 'styled-components';
 import { MdAdd } from 'react-icons/md';
 import PropTypes from 'prop-types';
 import { toast } from 'react-toastify';
+import debounce from 'lodash.debounce';
 
 import plusIconDark from '~/assets/images/Icon-Plus-dark-2px.svg';
 import plusIconLight from '~/assets/images/Icon-Plus-2px.svg';
 import closeIconDark from '~/assets/images/Icon-Close-dark-2px.svg';
 import closeIconLight from '~/assets/images/Icon-Close-2px.svg';
 import api from '~/services/api';
-import { Input, TextArea, Button, Switch, Modal, Card, Info } from '~/components';
+import {
+  Input,
+  TextArea,
+  Button,
+  Switch,
+  Modal,
+  Card,
+  Info,
+} from '~/components';
 
 import {
   Container,
@@ -32,7 +41,6 @@ import ToolsItem from './ToolsItem';
 
 function Home({ changeTheme }) {
   const [onlyTags, setOnlyTags] = useState(false);
-  const [search, setSearch] = useState('');
   const [tools, setTools] = useState([]);
   const [showForm, setShowForm] = useState(false);
   const [showDelete, setShowDelete] = useState(false);
@@ -64,11 +72,13 @@ function Home({ changeTheme }) {
     return tools.length === 0;
   }, [tools]);
 
-  const handleChangeTheme = useCallback((value) => {
-    console.log(value);
-    localStorage.setItem('@vuttr:theme:selected', value);
-    changeTheme(value);
-  }, [changeTheme]);
+  const handleChangeTheme = useCallback(
+    (value) => {
+      localStorage.setItem('@vuttr:theme:selected', value);
+      changeTheme(value);
+    },
+    [changeTheme]
+  );
 
   const loadTools = useCallback(async (searchText = '') => {
     try {
@@ -82,56 +92,63 @@ function Home({ changeTheme }) {
     } catch (error) {
       toast.error(`Internel server error`);
     }
-  }, [])
+  }, []);
 
   const handleToggleSearch = useCallback((value) => {
     setOnlyTags(value);
-  }, [])
-
-  const handleChange = useCallback((e) => {
-    setSearch(e.target.value);
   }, []);
 
-  const handleSubmit = useCallback(async (e) => {
-    e.preventDefault();
-    setLoading(true);
+  const handleSubmit = useCallback(
+    async (e) => {
+      e.preventDefault();
+      setLoading(true);
 
-    try {
-      const { data: response } = await api.post('/tools', {
-        title,
-        link,
-        description,
-        tags: tags.split(' '),
-      });
+      try {
+        const toolExists = tools.find(t => t.title === title);
 
-      setTools([...tools, response]);
-      setTitle('');
-      setLink('');
-      setDescription('');
-      setTags([]);
-      setShowForm(false);
-    } catch (error) {
-      toast.error(`Error adding ${title} tool`);
-    }
+        if (toolExists) {
+          throw new Error();
+        }
 
-    setLoading(false);
-  });
+        const { data: response } = await api.post('/tools', {
+          title,
+          link,
+          description,
+          tags: tags.split(' '),
+        });
 
-  const handleSearch = useCallback(async (e) => {
-    e.preventDefault();
+        setTools([...tools, response]);
+        setTitle('');
+        setLink('');
+        setDescription('');
+        setTags([]);
+        setShowForm(false);
+        toast.success(`${title} tool successfully added`);
+      } catch (error) {
+        toast.error(`Error adding ${title} tool`);
+      }
 
-    if (onlyTags) {
-      const { data: response } = await api.get('/tools', {
-        params: {
-          tags_like: search,
-        },
-      });
+      setLoading(false);
+    },
+    [description, link, tags, title, tools]
+  );
 
-      setTools(response);
-    } else {
-      loadTools(search);
-    }
-  }, []);
+  const handleSearch = useCallback(
+    async (text) => {
+      if (onlyTags) {
+        const { data: response } = await api.get('/tools', {
+          params: {
+            tags_like: text,
+          },
+        });
+
+        setTools(response);
+      } else {
+        loadTools(text);
+      }
+    },
+    [loadTools, onlyTags]
+  );
 
   const handleDelete = useCallback(async () => {
     setLoading(true);
@@ -148,7 +165,7 @@ function Home({ changeTheme }) {
     }
 
     setLoading(false);
-  }, []);
+  }, [deleteId, toolDeleteName, tools]);
 
   const handleShowDeleteModal = useCallback((id) => {
     setDeleteId(id);
@@ -163,14 +180,24 @@ function Home({ changeTheme }) {
     setDeleteId(null);
   }, []);
 
+  const resetAddForm = useCallback(() => {
+    setShowForm(false);
+    setTitle('');
+    setLink('');
+    setDescription('');
+    setTags([]);
+  }, []);
+
+  const onSearch = useCallback(debounce(handleSearch, 700), [onlyTags]);
+
   useEffect(() => {
     loadTools();
-  }, []);
+  }, [loadTools]);
 
   return (
     <Container>
       {showForm && (
-        <Modal onClose={() => setShowForm(false)}>
+        <Modal onClose={resetAddForm}>
           <h4 className="form-title">
             {/* <MdAdd size={30} color={theme.colors.ink} /> Add new tool */}
             <img className="add-title-icon" src={plusIcon} alt="Add Icon" />
@@ -220,9 +247,7 @@ function Home({ changeTheme }) {
                 id="tags"
                 required
               />
-              <Info>
-                *insira as tags separadas pro vírgula
-              </Info>
+              <Info>*insert tags separated by space</Info>
             </label>
             <Button type="submit" loading={loading}>
               Add Tool
@@ -251,7 +276,7 @@ function Home({ changeTheme }) {
         </Modal>
       )}
       <Content>
-        <div className="header-container">
+        <header className="header-container">
           <h1>VUTTR</h1>
           <Switch
             onChangeValue={handleChangeTheme}
@@ -261,16 +286,15 @@ function Home({ changeTheme }) {
             active={theme.name === 'dark'}
             variant="primary"
           />
-        </div>
+        </header>
         <h4>Very Useful Tools to Remember</h4>
 
         <NavbarContainer>
           <LeftContainer>
-            <form onSubmit={handleSearch}>
+            <form onSubmit={() => {}}>
               <Input
-                placeholder="search"
-                value={search}
-                onChange={handleChange}
+                placeholder="Search tool"
+                onChange={(e) => onSearch(e.target.value)}
               />
             </form>
             <Switch
@@ -287,17 +311,18 @@ function Home({ changeTheme }) {
           </Button>
         </NavbarContainer>
 
-        <Scrollbar>
-          {tools.map((tool) => (
-            <ToolsItem
-              tool={tool}
-              key={String(tool.id)}
-              handleDelete={handleShowDeleteModal}
-            />
-          ))}
-        </Scrollbar>
-        {empty && (
-          <Card>
+        {!empty ? (
+          <Scrollbar>
+            {tools.map((tool) => (
+              <ToolsItem
+                tool={tool}
+                key={String(tool.id)}
+                handleDelete={handleShowDeleteModal}
+              />
+            ))}
+          </Scrollbar>
+        ) : (
+          <Card className="mt-2">
             <NoTools>
               <h2>No tools for this moment :(</h2>
             </NoTools>

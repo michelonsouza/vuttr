@@ -1,19 +1,6 @@
 {
   "tools": [
     {
-      "id": 1,
-      "title": "Notion",
-      "link": "https://notion.so",
-      "description": "All in one tool to organize teams and ideas. Write, plan, collaborate, and get organized. ",
-      "tags": [
-        "organization",
-        "planning",
-        "collaboration",
-        "writing",
-        "calendar"
-      ]
-    },
-    {
       "id": 2,
       "title": "json-server",
       "link": "https://github.com/typicode/json-server",
@@ -53,17 +40,6 @@
       "id": 5
     },
     {
-      "title": "michelon",
-      "link": "http://link.com",
-      "description": "lalalala",
-      "tags": [
-        "js",
-        "nuxt",
-        "test"
-      ],
-      "id": 6
-    },
-    {
       "title": "material-ui",
       "link": "https://material-ui.com",
       "description": "Biblioteca para componentes de interface de usuário",
@@ -73,6 +49,18 @@
         "react"
       ],
       "id": 7
+    },
+    {
+      "title": "yarn",
+      "link": "yarn.com",
+      "description": "Package manager",
+      "tags": [
+        "yarn",
+        "npm",
+        "javascript",
+        "library"
+      ],
+      "id": 8
     }
   ]
 }

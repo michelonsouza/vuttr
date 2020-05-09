@@ -1,4 +1,4 @@
-import React, { useMemo, useState, useEffect } from 'react';
+import React, { useMemo, useState } from 'react';
 import { ThemeProvider } from 'styled-components';
 import { ToastContainer } from 'react-toastify';
 

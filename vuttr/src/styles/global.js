@@ -1,5 +1,7 @@
 import { createGlobalStyle } from 'styled-components';
 import 'react-perfect-scrollbar/dist/css/styles.css';
+import 'react-toastify/dist/ReactToastify.css';
+
 import metrics from './metrics';
 
 export default createGlobalStyle`
@@ -94,5 +96,9 @@ export default createGlobalStyle`
 
   .w-100 {
     width: 100%;
+  }
+
+  .mt-2 {
+    margin-top: 20px;
   }
 `;
