@@ -249,7 +249,7 @@ function Home({ changeTheme }) {
               />
               <Info>*insert tags separated by space</Info>
             </label>
-            <Button type="submit" loading={loading}>
+            <Button type="submit" loading={loading} title="Add Tool">
               Add Tool
             </Button>
           </form>
@@ -266,10 +266,10 @@ function Home({ changeTheme }) {
             Are you sure you want to remove <b>{toolDeleteName}</b>?
           </p>
           <div className="home__button-container">
-            <Button variant="primary" onClick={handleCancel}>
+            <Button variant="primary" onClick={handleCancel} title="Cancel">
               Cancel
             </Button>
-            <Button variant="danger" onClick={handleDelete}>
+            <Button variant="danger" onClick={handleDelete} title="Confirm remove">
               Yes, remove
             </Button>
           </div>
@@ -304,7 +304,7 @@ function Home({ changeTheme }) {
             />
             <span>search in tags only</span>
           </LeftContainer>
-          <Button type="button" onClick={() => setShowForm(true)}>
+          <Button type="button" onClick={() => setShowForm(true)} title="Add new Tool">
             <>
               <MdAdd size={30} color={theme.colors.white} /> Add
             </>
