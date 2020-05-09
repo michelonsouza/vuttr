@@ -92,6 +92,8 @@ function Home({ changeTheme }) {
     } catch (error) {
       toast.error(`Internel server error`);
     }
+
+    document.querySelector('#pre-load').style.display = 'none';
   }, []);
 
   const handleToggleSearch = useCallback((value) => {
