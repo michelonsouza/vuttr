@@ -183,11 +183,11 @@ function Home({ changeTheme }) {
   }, []);
 
   const resetAddForm = useCallback(() => {
-    setShowForm(false);
     setTitle('');
     setLink('');
     setDescription('');
     setTags([]);
+    setShowForm(false);
   }, []);
 
   const onSearch = useCallback(debounce(handleSearch, 700), [onlyTags]);
@@ -201,7 +201,6 @@ function Home({ changeTheme }) {
       {showForm && (
         <Modal onClose={resetAddForm}>
           <h4 className="form-title">
-            {/* <MdAdd size={30} color={theme.colors.ink} /> Add new tool */}
             <img className="add-title-icon" src={plusIcon} alt="Add Icon" />
             &nbsp; Add new tool
           </h4>

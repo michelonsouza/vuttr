@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import PropTypes from 'prop-types';
 
 import closeIcon from '~/assets/images/Icon-Close-2px.svg';
@@ -8,14 +8,30 @@ const Modal = React.forwardRef(({ onClose, children }, ref) => {
   const [open, setOpen] = useState(true);
   const [display, setDisplay] = useState(true);
 
-  function close() {
+  const close = useCallback(() => {
     setOpen(false);
 
     setTimeout(() => {
       setDisplay(false);
       onClose();
     }, 600);
-  }
+  }, []);
+
+  useEffect(() => {
+    window.addEventListener('keyup', e => {
+      if (e.key === 'Escape') {
+        close();
+      }
+    });
+
+    return () => {
+      window.removeEventListener('keyup', e => {
+        if (e.key === 'Escape') {
+          close();
+        }
+      });
+    }
+  })
 
   return (
     <Container className={!open && 'leave'} display={String(display)}>

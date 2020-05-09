@@ -24,5 +24,6 @@ export const Container = styled.button`
     border-radius: 50%;
     transition: margin-left 200ms ease !important;
     margin-left: ${(props) => (props.active ? 'calc(100% - 30px)' : 0)};
+    outline: 0 !important;
   }
 `;

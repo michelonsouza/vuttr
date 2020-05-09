@@ -143,6 +143,7 @@ export const LeftContainer = styled.div`
 export const Scrollbar = styled(PerfectScrollbar)`
   margin-top: ${metrics.margin}px;
   max-height: calc(100vh - 300px);
+  margin-bottom: 30px;
 `;
 
 export const HeaderToolItem = styled.div`

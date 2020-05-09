@@ -9,6 +9,7 @@ export default createGlobalStyle`
     margin: 0;
     padding: 0;
     outline: 0;
+    -webkit-tap-highlight-color: transparent !important;
     box-sizing: border-box;
     -webkit-font-smoothing: antialiased !important;
     transition: background 200ms, background-color 200ms, color 200ms, border-color 200ms ease !important;
@@ -28,6 +29,7 @@ export default createGlobalStyle`
     font-family: 'Source Sans Pro', Arial, Helvetica, sans-serif;
     font-size: 20px;
     line-height: 26px;
+    outline: 0 !important;
   }
 
   a {
