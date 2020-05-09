@@ -18,8 +18,8 @@
 ---
 
 ## Vuttr
-🔗[vuttr.netlify.app](https://vuttr.netlify.app/)
-### 📝 Descrição
+🔗[vuttr-tools.netlify.app](https://vuttr-tools.netlify.app/)
+-tools### 📝 Descrição
 A ideia desta aplicação é demonstrar o consumo de uma API fictícia local utilizando [json-server](https://github.com/typicode/json-server) (mais detalhes abaixo).
 
 Vuttr é uma feramenta de cadastro, consulta e exclusão de ferramentas/bibliotecas de desenvolvimento. Usilizando uma fake-api com banco de dados através de um arquivo `db.json` podemos efetuar todas as tarefas de CRUD (_Create, Read, Update e Delete_), porém, nesta aplicação não efetuaremos o update pelas diretivas do projeto. Vuttr tembém tem um sistema de busca provido pelo `json-server` e implementado com `debounce`.
@@ -106,7 +106,7 @@ Abaixo segue uma pequena demonstração:
 **Dark-mode**
 ![Vuttr Mobile](/.github/dark-mode-demo.gif)
 
-Link da aplicação hospedado na Netlify: 🔗[vuttr.netlify.app](https://vuttr.netlify.app/)
+Link da aplicação hospedado na Netlify: 🔗[vuttr-tools.netlify.app](https://vuttr-tools.netlify.app/)
 
 **Licença MIT**
 
