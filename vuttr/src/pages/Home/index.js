@@ -287,6 +287,7 @@ function Home({ changeTheme }) {
             checkedValue="dark"
             active={theme.name === 'dark'}
             variant="primary"
+            title="Switch theme between light and dark"
           />
         </header>
         <h4>Very Useful Tools to Remember</h4>
@@ -303,6 +304,7 @@ function Home({ changeTheme }) {
               active={onlyTags}
               value={onlyTags}
               onChangeValue={handleToggleSearch}
+              title="Toggle between tag search only or not"
             />
             <span>search in tags only</span>
           </LeftContainer>
