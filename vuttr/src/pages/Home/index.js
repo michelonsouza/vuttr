@@ -18,6 +18,7 @@ import plusIconDark from '~/assets/images/Icon-Plus-dark-2px.svg';
 import plusIconLight from '~/assets/images/Icon-Plus-2px.svg';
 import closeIconDark from '~/assets/images/Icon-Close-dark-2px.svg';
 import closeIconLight from '~/assets/images/Icon-Close-2px.svg';
+import searchIcon from '~/assets/images/Icon-Search-2px.svg';
 import api from '~/services/api';
 import {
   Input,
@@ -106,7 +107,7 @@ function Home({ changeTheme }) {
       setLoading(true);
 
       try {
-        const toolExists = tools.find(t => t.title === title);
+        const toolExists = tools.find((t) => t.title === title);
 
         if (toolExists) {
           throw new Error();
@@ -270,7 +271,11 @@ function Home({ changeTheme }) {
             <Button variant="primary" onClick={handleCancel} title="Cancel">
               Cancel
             </Button>
-            <Button variant="danger" onClick={handleDelete} title="Confirm remove">
+            <Button
+              variant="danger"
+              onClick={handleDelete}
+              title="Confirm remove"
+            >
               Yes, remove
             </Button>
           </div>
@@ -297,6 +302,7 @@ function Home({ changeTheme }) {
               <Input
                 placeholder="Search tool"
                 onChange={(e) => onSearch(e.target.value)}
+                icon={() => <img src={searchIcon} alt="search" />}
               />
             </form>
             <Switch
@@ -307,7 +313,11 @@ function Home({ changeTheme }) {
             />
             <span>search in tags only</span>
           </LeftContainer>
-          <Button type="button" onClick={() => setShowForm(true)} title="Add new Tool">
+          <Button
+            type="button"
+            onClick={() => setShowForm(true)}
+            title="Add new Tool"
+          >
             <>
               <MdAdd size={30} color={theme.colors.white} /> Add
             </>

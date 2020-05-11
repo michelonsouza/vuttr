@@ -8,7 +8,7 @@
   <a href="https://github.com/michelonsouza">
     <img alt="Made by Rocketseat" src="https://img.shields.io/badge/made%20by-Michelon Souza-%2330C3FC">
   </a>
-  <img src="https://img.shields.io/netlify/24cea527-a667-4212-9e21-8701933fc49c?color=30C3FC"
+  <img src="https://img.shields.io/netlify/e20315f0-0ff7-4edf-9c39-d6ef4452a580"
   alt="Netlify" />
   <img alt="Code Size" src="https://img.shields.io/github/languages/code-size/michelonsouza/vuttr?color=%2330C3FC"
   alt="Netlify" />
@@ -19,7 +19,7 @@
 
 ## Vuttr
 🔗[vuttr-tools.netlify.app](https://vuttr-tools.netlify.app/)
--tools### 📝 Descrição
+### 📝 Descrição
 A ideia desta aplicação é demonstrar o consumo de uma API fictícia local utilizando [json-server](https://github.com/typicode/json-server) (mais detalhes abaixo).
 
 Vuttr é uma feramenta de cadastro, consulta e exclusão de ferramentas/bibliotecas de desenvolvimento. Usilizando uma fake-api com banco de dados através de um arquivo `db.json` podemos efetuar todas as tarefas de CRUD (_Create, Read, Update e Delete_), porém, nesta aplicação não efetuaremos o update pelas diretivas do projeto. Vuttr tembém tem um sistema de busca provido pelo `json-server` e implementado com `debounce`.
@@ -98,12 +98,15 @@ Foi utilizado o instalador padrão do react conhecido como **CRA** (_Create Reac
 Abaixo segue uma pequena demonstração:
 
 **Desktop**
+
 ![Vuttr Desktop](/.github/desktop-demo.gif)
 
 **Mobile**
+
 ![Vuttr Mobile](/.github/mobile-demo.gif)
 
 **Dark-mode**
+
 ![Vuttr Mobile](/.github/dark-mode-demo.gif)
 
 Link da aplicação hospedado na Netlify: 🔗[vuttr-tools.netlify.app](https://vuttr-tools.netlify.app/)

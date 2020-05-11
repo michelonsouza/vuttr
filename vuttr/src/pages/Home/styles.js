@@ -71,12 +71,13 @@ export const NavbarContainer = styled.div`
   align-items: center;
   width: 100%;
 
-  @media screen and (min-width: 768px) {
-  }
-
   & > div {
     display: flex;
     flex: 1;
+
+    & > span {
+      word-break: break-word;
+    }
 
     & > div {
       flex: 1;
