@@ -31,8 +31,12 @@ export const Container = styled.div`
       font-weight: 600;
       color: ${(props) => props.theme.colors.ink};
 
-      input,
+      /* input,
       textarea {
+        margin: ${metrics.margin / 4}px 0 ${metrics.margin}px;
+      } */
+
+      & > div {
         margin: ${metrics.margin / 4}px 0 ${metrics.margin}px;
       }
 
